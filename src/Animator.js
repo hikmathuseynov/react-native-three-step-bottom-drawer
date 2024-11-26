@@ -14,7 +14,7 @@ export default class Animator extends Component{
   constructor(props){
     super(props);
     this.currentState= "down"
-    this.position = new Animated.ValueXY(this.props.currentPosition);
+    this.position = new Animated.ValueXY(this.props.currentPosition, {useNativeDriver: true});
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: this._handlePanResponderMove,
@@ -55,9 +55,9 @@ export default class Animator extends Component{
   _handlePanResponderMove = (e, gesture) => {
 
    if (this._swipeInBounds(gesture)) {
-      this.position.setValue({ y: this.props.currentPosition.y + gesture.dy });
+      this.position.setValue({ y: this.props.currentPosition.y + gesture.dy, x: 0 });
     } else {
-      this.position.setValue({ y: this.props.upPosition.y - this._calculateEase(gesture) });
+      this.position.setValue({ y: this.props.upPosition.y - this._calculateEase(gesture), x: 0 });
     }
   }
 
