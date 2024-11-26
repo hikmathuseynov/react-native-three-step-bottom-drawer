@@ -14,7 +14,7 @@ export default class Animator extends Component{
   constructor(props){
     super(props);
     this.currentState= "down"
-    this.position = new Animated.ValueXY(this.props.currentPosition, {useNativeDriver: true});
+    this.position = new Animated.ValueXY(this.props.currentPosition, {useNativeDriver: false});
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: this._handlePanResponderMove,
